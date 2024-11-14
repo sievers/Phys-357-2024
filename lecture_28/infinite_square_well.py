@@ -14,7 +14,7 @@ E=(np.arange(nmax)+1)**2*np.pi**2/a**2 #and these are the analytic energies
 
 psi0=np.exp(-0.5*(x-a/2)**2/0.25**2) #pick a starting wave function
 psi0=psi0-psi0[0]  #make sure it is zero at the edge
-psi0=psi0*np.exp(2J*x)  #give it a nudge if you want
+psi0=psi0*np.exp(4J*x)  #give it a nudge if you want
 
 #find the amplitudes of our starting wave function in terms of the
 #eigenstates.  normally we might have to least-squares, but we know
@@ -44,5 +44,6 @@ for t in np.arange(0,tmax,0.002):
     plt.ylim(0,1)
     plt.title('t={:6.3f}'.format(t))
     plt.pause(0.001)
+    
 plt.plot(x,np.abs(psi0)**2)
 plt.legend([r'$\Psi$ at t='+repr(t),r'$\Psi$ at t=0'])

@@ -19,7 +19,7 @@ sig=0.1*xmax
 myg=np.exp(-0.5*(x+x0)**2/sig**2)
 
 #now we'll add a phase ramp to start the particle moving
-k=np.sqrt(2*V0)*0.8
+k=np.sqrt(2*V0)*1.0
 psi0=myg*np.exp(1J*x*k)
 
 E0,Esig=states.get_energy(psi0)

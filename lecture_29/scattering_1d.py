@@ -23,13 +23,13 @@ ind=np.max(np.where(e<V.max()))
 
 
 #start with a gaussian wave packet
-myg=np.exp(-0.5*(x+5)**2/2**2)
+myg=np.exp(-0.5*(x+5)**2/3**2)
 
 #now we want to start it moving to the right.
 #E=k^2/2 if we set hbar to 1, so we want k^2/2>V0
 #
 #now we'll add a phase ramp to start the particle moving
-k=np.sqrt(2*V0)*8.0 #10 is about boundary to go to transmission regime
+k=np.sqrt(2*V0)*10.5 #10 is about boundary to go to transmission regime
 psi0=myg*np.exp(-1J*x*k)
 amps0=psi.T@psi0
 

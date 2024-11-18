@@ -24,7 +24,7 @@ myg=np.exp(-0.5*(x)**2/2**2)
 #E=k^2/2 if we set hbar to 1, so we want k^2/2>V0
 #
 #now we'll add a phase ramp to start the particle moving
-k=np.sqrt(2*V0)*0.0 #10 is about boundary to go to transmission regime
+k=np.sqrt(2)*13.0 #10 is about boundary to go to transmission regime
 psi0=myg*np.exp(-1J*x*k)
 amps0=psi.T@psi0
 
@@ -36,7 +36,7 @@ Esig=np.sqrt(Esqr-E0**2)
 print('starting energy is ',E0,' +/- ',Esig)
 
 
-for t in np.arange(0,2000,0.3):
+for t in np.arange(0,20000000,300):
     amps=amps0*np.exp(1J*t*e)
     psi_cur=psi@amps
     plt.clf()

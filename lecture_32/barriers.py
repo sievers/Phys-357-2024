@@ -2,9 +2,9 @@ import numpy as np
 from matplotlib import pyplot as plt
 plt.ion()
 
-fac=3
-V0=5*fac
-x=np.linspace(-6,6,601)
+fac=1
+V0=15*fac
+x=np.linspace(-6,6,301)
 V=V0*np.exp(-0.5*(fac*x)**2)
 a=np.diff(x)
 
@@ -56,9 +56,18 @@ psi=np.linalg.inv(mm)@rhs
 #the decaying and growing parts
 amps=np.abs(psi[1::2])**2+np.abs(psi[2::2])**2
 T=amps[-2]
-print('measured transmission: ',T)
+print('measured transmission: ',T,T/pred)
 R=np.abs(psi[0])**2
 print('transmission plus reflection: ',T+R)
 #plt.clf();plt.plot(x[1:],amps);plt.show()
 plt.plot(x[1:],amps)
 plt.semilogy()
+
+#now find the current, using psi and psi' at the bin edges
+#at edge, psi = a exp(kx) + b exp(-kx), for x at edge=a+b
+#gradient is    a k - bk
+psi_edge=psi[1::2]+psi[2::2]
+
+psi_grad=(psi[1::2]-psi[2::2])*k[1:]
+curr = (np.conj(psi_edge)*psi_grad -np.conj(psi_grad)*psi_edge)/2j
+print('current is ',np.median(curr),np.median(curr)/T)

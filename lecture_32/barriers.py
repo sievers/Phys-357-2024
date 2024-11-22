@@ -2,8 +2,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 plt.ion()
 
-fac=1
-V0=10*fac
+fac=3
+V0=5*fac
 x=np.linspace(-6,6,601)
 V=V0*np.exp(-0.5*(fac*x)**2)
 a=np.diff(x)
@@ -42,8 +42,9 @@ for i in range(len(x)-1):
 #the transmitted amplitude once we're anywhere past
 #the barrier, and 2) it's hard and I'm lazy.
 mm=mat[:-1,1:]
-rhs=np.zeros(mm.shape[0])
+rhs=np.zeros(mm.shape[0],dtype='complex')
 rhs[0]=1
+rhs[1]=k[0]
 mm[-1,-1]=1
 
 #now that we've found the couping between the coefficients,
@@ -54,7 +55,10 @@ psi=np.linalg.inv(mm)@rhs
 #we can find the total probability in each region by squaring and adding
 #the decaying and growing parts
 amps=np.abs(psi[1::2])**2+np.abs(psi[2::2])**2
-print('measured transmission: ',amps[-2])
+T=amps[-2]
+print('measured transmission: ',T)
+R=np.abs(psi[0])**2
+print('transmission plus reflection: ',T+R)
 #plt.clf();plt.plot(x[1:],amps);plt.show()
 plt.plot(x[1:],amps)
 plt.semilogy()

@@ -70,4 +70,4 @@ psi_edge=psi[1::2]+psi[2::2]
 
 psi_grad=(psi[1::2]-psi[2::2])*k[1:]
 curr = (np.conj(psi_edge)*psi_grad -np.conj(psi_grad)*psi_edge)/2j
-print('current is ',np.median(curr),np.median(curr)/T)
+#print('current is ',np.median(curr),np.median(curr)/T)

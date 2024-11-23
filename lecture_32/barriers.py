@@ -3,8 +3,8 @@ from matplotlib import pyplot as plt
 plt.ion()
 
 fac=1
-V0=15*fac
-x=np.linspace(-6,6,301)
+V0=5*fac
+x=np.linspace(-6,6,601)
 V=V0*np.exp(-0.5*(fac*x)**2)
 a=np.diff(x)
 
@@ -70,4 +70,4 @@ psi_edge=psi[1::2]+psi[2::2]
 
 psi_grad=(psi[1::2]-psi[2::2])*k[1:]
 curr = (np.conj(psi_edge)*psi_grad -np.conj(psi_grad)*psi_edge)/2j
-#print('current is ',np.median(curr),np.median(curr)/T)
+print('current is ',np.median(curr),np.median(curr)/T)

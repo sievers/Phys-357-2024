@@ -7,7 +7,17 @@ Evec=np.linspace(V0,3*V0,301)
 Evec=Evec[1:] #we have to be more careful for E=V0 exactly
 TT=0*Evec
 sig=3.0
-x=np.linspace(-6,6,301)
+x=np.linspace(-5,5,301)
+#let's fuss about a bit to make sure we have grid cells exactly
+#where we want them
+ind=np.argmin(np.abs(x-sig))
+x[ind]=sig
+ind=np.argmin(np.abs(x+sig))
+x[ind]=-1*sig
+
+
+
+
 
 #we want 2ka=2n pi for perfect transmission.
 #critical waves are then k=n pi /a (which is 2*sig the way we set
@@ -25,6 +35,10 @@ kcrit=np.arange(1,4)*np.pi/(2*sig)
 Ecrit=V0+kcrit**2/2
 print("critical Energies for barrier of width "+repr(2*sig)+" and height "+repr(V0)+" are:")
 print(Ecrit)
+
+#put an energy exactly on the first 100% transmission energy
+ind=np.argmin(np.abs(Evec-Ecrit[0]))
+Evec[ind]=Ecrit[0]
 
 #loop over incoming energyies and see what the tranmission fraction looks like
 for iii in range(len(Evec)):

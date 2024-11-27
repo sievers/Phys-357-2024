@@ -16,12 +16,12 @@ def rk4(fun,x,y,h,eps):
     return y+dy
 
 
-y=np.linspace(0,5,501)
+y=np.linspace(0,7,501)
 h=y[1]-y[0]
 psi=np.zeros([len(y),2])
-for eps in np.arange(4.9,5.1,0.0001):
-    #psi[0,:]=np.asarray([0,1]);even=False
-    psi[0,:]=np.asarray([1,0]);even=True
+for eps in np.arange(6.9,7.1,0.0001):
+    psi[0,:]=np.asarray([0,1]);even=False
+    #psi[0,:]=np.asarray([1,0]);even=True
     for i in range(len(y)-1):
         psi[i+1,:]=rk4(sho_fun,y[i],psi[i,:],h,eps)
     plt.clf()
